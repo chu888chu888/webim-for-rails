@@ -1,9 +1,29 @@
 WebimForRails::Application.routes.draw do
+  get "welcome/index"
+  get "webim/index"
+  get "webim/run"
+  post "webim/online"
+  post "webim/offline"
+  post "webim/message"
+  post "webim/presence"
+  post "webim/refresh"
+  post "webim/status"
+  post "webim/setting"
+  get "webim/history"
+  post "webim/clear_history"
+  post "webim/download_history"
+ 
+  get "webim/members"
+  post "webim/join"
+  post "webim/leave"
+  get "webim/rooms"
+  get "webim/buddies"
+  get "webim/notifications"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
