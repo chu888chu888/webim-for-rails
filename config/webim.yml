@@ -4,7 +4,7 @@ webim:
   isopen: true
   domain: localhost
   apikey: public 
-  host: localhost
+  host: nextalk.im
   port: 8000
   emot: default
   theme: base
