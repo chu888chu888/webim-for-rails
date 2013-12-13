@@ -1,7 +1,4 @@
-0. Webim.config
-1. WebimController
+1. WebimHistory.create(.....
 
-2. DB:migrate
-3. WebimHistory
-4. WebimSetting
-5. Config
+   wrong number of arguments (2 for 0)
+  
