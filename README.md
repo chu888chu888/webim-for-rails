@@ -36,3 +36,18 @@ config/webim.yml
 config/initializers/load_webim_config.rb
 
 	WEBIM_CONFIG = YAML.load_file("#{Rails.root}/config/webim.yml")['webim'] 
+
+Controller
+==========
+
+app/controllers/webim_controller.rb
+
+
+Models
+======
+
+app/models/webim_history.rb
+
+app/models/webim_setting.rb
+
+
