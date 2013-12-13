@@ -1,0 +1,22 @@
+# Webim config
+#
+webim:
+  isopen: true
+  domain: localhost
+  apikey: public 
+  host: localhost
+  port: 8000
+  emot: default
+  theme: base
+  opacity: 80
+  local: zh-CN
+  enable_room: false
+  enable_chatlink: false
+  enable_shortcut: false
+  enable_menu: false
+  enable_noti: true
+  admin_uid: 0
+  visitor: false
+  show_unavailable: false
+  upload: false
+

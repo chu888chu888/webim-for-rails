@@ -3,7 +3,7 @@ require "webim"
 
 class WebimController < ApplicationController
 
-  before_action :init_webimc
+  before_action :init_client
 
   def run
 	 respond_to do |format|
@@ -17,12 +17,10 @@ class WebimController < ApplicationController
 		#FIXME: read from model
 		groups = [{:id => "g1", :nick => "g1", :count => 0, :url => "#", :pic_url => "#"}]
     
-		json = @webimc.online(buddies.map {|buddy| buddy[:id]}, groups.map {|group| group[:id]})
-
-		puts json
+		json = @client.online(buddies.map {|buddy| buddy[:id]}, groups.map {|group| group[:id]})
 
 		conn = {:ticket => json['ticket'],
-					  :domain => @webimc.domain,
+					  :domain => @client.domain,
 					  :jsonpd => json['jsonpd'],
 					  :server => json['server'],
 		        :websocket => json['websocket']}
@@ -43,7 +41,7 @@ class WebimController < ApplicationController
 			:buddies => buddies,
 			:rooms => groups,
 			:server_time => Time.now.to_f * 1000,
-			:user => @webimc.user
+			:user => @client.user
 		}
 		respond_to do |format| 
 			format.json { render json: data} 
@@ -51,7 +49,7 @@ class WebimController < ApplicationController
   end
 
   def offline
-	  @webimc.offline
+	  @client.offline
 		respond_ok
   end
 
@@ -76,7 +74,7 @@ class WebimController < ApplicationController
 		#		})
 		#end
 		#if(send == "1")
-			@webimc.message(to, body, timstamp, type, style)
+			@client.message(to, body, timestamp, type, style)
 		#end
 		respond_ok
   end
@@ -84,19 +82,19 @@ class WebimController < ApplicationController
   def presence
 	  show = params[:show]
 		status = params[:status]
-		@webimc.presence(show, status)
+		@client.presence(show, status)
 		respond_ok
   end
 
   def refresh
-	  @webimc.offline
+	  @client.offline
 		respond_ok
   end
 
   def status
 		to = params[:to]
 	  show = params[:show]
-	  @webimc.status(to, show)	
+	  @client.status(to, show)	
 		respond_ok
   end
 
@@ -138,7 +136,7 @@ class WebimController < ApplicationController
 
   def members
 	  gid = params[:id]
-		res = @webimc.members(gid)
+		res = @client.members(gid)
 		res = "Not Found" unless res
 		respond_to do |format|
 			format.json { render json: res}
@@ -151,7 +149,7 @@ class WebimController < ApplicationController
 		unless room
 			room = {:id => gid, "nick" => params[:nick], :temporary => true, :pic_url => "/static/images/chat.pnp"}
 		end
-		res = @webimc.join(gid)
+		res = @client.join(gid)
 		room[:count] = res["count"]
 		respond_to do |format|
 			format.json { render json: room}
@@ -160,7 +158,7 @@ class WebimController < ApplicationController
 
   def leave
 		gid = params[:id]
-		@webimc.leave(gid)
+		@client.leave(gid)
 		respond_ok
   end
 
@@ -198,11 +196,11 @@ class WebimController < ApplicationController
 		respond_to do |format| format.json { render json: "ok"} end
 	end
 
-	def init_webimc
+	def init_client
 			ticket = params[:ticket] ? params[:ticket] : ""
 			user = {:id => "1", :nick => "user1", :show => "available", :status => "Online", :url => "#", :pic_url => "#"}
 			config = {:domain => "localhost", :apikey => "public", :host => "localhost"}
-			@webimc = Webim::Client.new(user, ticket, config)
+			@client = Webim::Client.new(user, ticket, config)
 	end
 
 end
