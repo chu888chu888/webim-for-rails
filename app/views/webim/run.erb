@@ -1,18 +1,19 @@
+
 var _IMC = {
 	production_name: 'rails',
 	version: '5.1',
 	path: '/webim/',
 	is_login: true,
-	user: {'id': '1', 'nick': 'user1'},
-	setting: '',
+	user: '',
+	setting: <%= @setting %>,
 	menu: '',
-	enable_room: true,
-	enable_noti: true,
-	enable_chatlink: true,
-	enable_shortcut: '',
-	enable_menu: 'true',
-	theme: 'base',
-	local: 'zh-CN',
+	enable_room: <%= WEBIM_CONFIG['enable_room'] %>,
+	enable_noti: <%= WEBIM_CONFIG['enable_noti'] %>,
+	enable_chatlink: <%= WEBIM_CONFIG['enable_chatlink'] %>,
+	enable_shortcut: <%= WEBIM_CONFIG['enable_shortcut'] %>,
+	enable_menu: <%= WEBIM_CONFIG['enable_menu'] %>,
+	theme: "<%= WEBIM_CONFIG['theme'] %>",
+	local: "<%= WEBIM_CONFIG['local'] %>",
 	min: window.location.href.indexOf("webim_debug") != -1 ? "" : ".min"
 };
 
