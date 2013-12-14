@@ -3,7 +3,7 @@ webim-for-rails
 
 webim for rails
 
-webim static files
+Static Files
 ==================
 
 public/static
@@ -36,6 +36,15 @@ config/webim.yml
 config/initializers/load_webim_config.rb
 
 	WEBIM_CONFIG = YAML.load_file("#{Rails.root}/config/webim.yml")['webim'] 
+
+Database
+========
+
+webim_histories
+
+webim_settings
+
+rake db:migrate
 
 Controller
 ==========
