@@ -44,12 +44,7 @@
 	if( _IMC.enable_room )ui.addApp("room", { discussion: false });
 	if( _IMC.enable_noti )ui.addApp("notification");
 	ui.addApp("setting", { "data": webim.setting.defaults.data });
-	if (_IMC.enable_chatlink) ui.addApp("chatlink", {
-		space_href: [/mod=space&uid=(\d+)/i, /space\-uid\-(\d+)\.html$/i],
-		space_class: /xl\sxl2\scl/,
-		space_id: null,
-		link_wrap: document.getElementById("ct")
-	});
-	ui.render();
+    if (_IMC.enable_chatlink) ui.addApp("chatlink2");
+    ui.render();
 	_IMC['is_login'] && im.autoOnline() && im.online();
 })(webim);
